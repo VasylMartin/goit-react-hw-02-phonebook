@@ -1,10 +1,12 @@
+// import { nanoid } from "nanoid";
 import React from "react";
 // import { nanoid } from 'nanoid';
 
 
 class Form extends React.Component {
     state = {
-        name: ''
+        name: '',
+        number: ''
     }
 
     handleFormSubmit = event => {
@@ -23,6 +25,14 @@ class Form extends React.Component {
         this.setState({name: ''})
     }
 
+    // addingContact = ({name, number}) => {
+    //     const newContact = {
+    //         id: nanoid(),
+    //         name,
+    //         number
+    //     }
+    // }
+
     render() {
         return (
             <form onSubmit={this.handleFormSubmit}>
@@ -38,7 +48,16 @@ class Form extends React.Component {
                     required
                 />
                 </label>
-                <button type="submit">Add contact</button>
+                <label htmlFor="number">Number
+                <input
+                    type="tel"
+                    name="number"
+                    pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+                    title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+                    required
+                />
+                </label>
+                <button type="submit" onClick={() => this.addingContact}>Add contact</button>
             </form>
         )
     }

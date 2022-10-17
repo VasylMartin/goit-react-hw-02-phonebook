@@ -1,14 +1,17 @@
 import React from "react";
-// import { nanoid } from 'nanoid';
 
-export const ContactList = () => {
+
+export const ContactList = ({contacts}) => {
     return (
         <div>
             <h2>Contacts</h2>
                 <ul>
-                    <li>Rosie Simpson</li>
-                    <li>Hermione Kline</li>
-                    <li>Eden Clements</li>
+                    {contacts.map(({name, id, number}) => (
+                        <li name={name}
+                        key={id}
+                        >{name}: {number}</li>
+                    )
+                    )}
                 </ul>
         </div>
         
