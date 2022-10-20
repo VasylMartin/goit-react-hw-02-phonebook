@@ -34,17 +34,21 @@ class App extends React.Component {
     }))
   }
 
-  render() {
+  deleteContact = (contactId) => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+    }))
+  }
 
+  render() {
     const normalizedFilter = this.state.filter.toLocaleLowerCase()
-  
     const visibleContacts = this.state.contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter))
 
     return (
       <>
         <Form onSubmit={this.onFormSubmit}/>
         <FormFiler value={this.state.filter} onChange={this.changeFilter}/>
-        <ContactList contacts={visibleContacts}/>
+        <ContactList contacts={visibleContacts} onDeletContact={this.deleteContact}/>
       </>
     )
   };
