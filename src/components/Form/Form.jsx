@@ -1,6 +1,4 @@
-// import { nanoid } from "nanoid";
 import React from "react";
-// import { nanoid } from 'nanoid';
 
 
 class Form extends React.Component {
@@ -9,38 +7,33 @@ class Form extends React.Component {
         number: ''
     }
 
-    handleFormSubmit = event => {
-        event.preventDefault()
-        this.props.onSubmit(this.state.name)
-
-        this.resetForm( )
+    handleInputsChange = e => {
+        const {name, value} = e.currentTarget
+        this.setState({
+            [name]: value
+        })
     }
 
-    handleChange = event => {
-        const {name, value} = event.currentTarget
-        this.setState({[name]: value})
+    handleSubmit = e => {
+        e.preventDefault()
+
+        this.props.onSubmit(this.state)
+
+        this.resetForm()
     }
 
     resetForm = () => {
-        this.setState({name: ''})
+        this.setState({name: '', number: ''})
     }
-
-    // addingContact = ({name, number}) => {
-    //     const newContact = {
-    //         id: nanoid(),
-    //         name,
-    //         number
-    //     }
-    // }
 
     render() {
         return (
-            <form onSubmit={this.handleFormSubmit}>
+            <form onSubmit={this.handleSubmit}>
                 <h1>Phonebook</h1>
                 <label htmlFor="name">Name
                 <input
                     value={this.state.name}
-                    onChange={this.handleChange}
+                    onChange={this.handleInputsChange}
                     type="text"
                     name="name"
                     pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -50,6 +43,8 @@ class Form extends React.Component {
                 </label>
                 <label htmlFor="number">Number
                 <input
+                    value={this.state.number}
+                    onChange={this.handleInputsChange}
                     type="tel"
                     name="number"
                     pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -57,7 +52,7 @@ class Form extends React.Component {
                     required
                 />
                 </label>
-                <button type="submit" onClick={() => this.addingContact}>Add contact</button>
+                <button type="submit">Add contact</button>
             </form>
         )
     }
