@@ -15,15 +15,16 @@ class App extends React.Component {
   }
 
   onFormSubmit = data => {
+    const {name, number} = data
     const id = nanoid()
     const friend = {
       id,
-      name: data.name,
-      number: data.number,
+      name,
+      number,
     }
 
-    this.setState(prevState => ({
-      contacts: [friend, ...prevState.contacts]
+    this.setState(({contacts}) => ({
+      contacts: [friend, ...contacts]
     }))
   }
 
