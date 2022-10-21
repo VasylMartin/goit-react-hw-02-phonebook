@@ -29,6 +29,14 @@ class App extends React.Component {
       number,
     }
 
+    const isTheSame = this.state.contacts.find(
+      contact => contact.name.toLowerCase() === data.name.toLowerCase()
+    )
+    if (isTheSame) {
+      alert(`${isTheSame.name} is already in contacts`)
+      return
+    }
+
     this.setState(({contacts}) => ({
       contacts: [friend, ...contacts]
     }))
@@ -41,8 +49,10 @@ class App extends React.Component {
   }
 
   render() {
-    const normalizedFilter = this.state.filter.toLocaleLowerCase()
-    const visibleContacts = this.state.contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter))
+
+    const {filter, contacts} = this.state
+    const normalizedFilter = filter.toLocaleLowerCase()
+    const visibleContacts = contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter))
 
     return (
       <>
