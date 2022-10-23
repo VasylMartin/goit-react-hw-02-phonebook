@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 export const FormFiler = ({value, onChange}) => {
     return (
@@ -12,3 +13,8 @@ export const FormFiler = ({value, onChange}) => {
                 </label>
     )
 }
+
+FormFiler.propTypes = {
+    value: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+};

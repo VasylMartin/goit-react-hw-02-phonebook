@@ -58,7 +58,7 @@ class App extends React.Component {
       <>
         <Form onSubmit={this.onFormSubmit}/>
         <FormFiler value={this.state.filter} onChange={this.changeFilter}/>
-        <ContactList contacts={visibleContacts} onDeletContact={this.deleteContact}/>
+        <ContactList contacts={visibleContacts} onDeleteContact={this.deleteContact}/>
       </>
     )
   };
